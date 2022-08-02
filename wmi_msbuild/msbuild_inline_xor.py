@@ -11,7 +11,8 @@ args = parser.parse_args()
 parsed_args = vars(args)
 
 key_array = []
-output = """
+output = (
+    """
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Target Name="Debug">
    <ClassExample />
@@ -60,7 +61,7 @@ output = """
 				    { 
 
 """
-output += "byte[] buff = new byte[] {"
+    + "byte[] buff = new byte[] {")
 if parsed_args['str_key']:
   key_array = bytearray.fromhex(parsed_args['str_key'].encode('hex'))
 if parsed_args['hex_key']:

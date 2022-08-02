@@ -8,20 +8,14 @@ links = []
 with open('beacons.csv', mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
 
-    for row in csv_reader:
-        nodes.append(row)
-
+    nodes.extend(iter(csv_reader))
 # Add node Icon
 
 for node in nodes:
     nodeIcon = u'\uf0e7'
 
-    if node["pbid"] == "":
-        nodeIcon = u'\uf0e7'
+    nodeIcon = u'\uf0e7'
 
-    else:
-        nodeIcon = u'\uf0e7'
-    
     node.update({"nodeIcon":nodeIcon})
 
 
@@ -30,7 +24,7 @@ for node in nodes:
     beacon_source = node["id"]
     beacon_target = ""
     beacon_type = ""
-    
+
 
     if node["pbid"] == "":
         beacon_type = "HTTP"
@@ -38,8 +32,8 @@ for node in nodes:
     else:
         beacon_type = "SMB"
         beacon_target = node["pbid"]
-        
-    
+
+
     # Add each beacon to list
     links.append({"source":beacon_source,"target":beacon_target,"type":beacon_type})
 
